@@ -6,9 +6,11 @@ import { InstantsearchService } from '../../services/instantsearch.service';
 @Component({
   selector: 'app-search-box',
   template: `
-    <p>
-      search-box Works!
-    </p>
+    <input
+      type="text"
+      [value]="state.query"
+      (input)="handleChange($event.target.value)"
+    />
   `,
   styles: []
 })
@@ -24,6 +26,10 @@ export class SearchBoxComponent implements OnInit {
   ngOnInit() {
     const widget = connectSearchBox(this.updateState);
     this.instantsearchService.search.addWidget(widget());
+  }
+
+  handleChange = (query) => {
+    this.state.refine(query);
   }
 
   updateState = (state, isFirstRendering) => {
