@@ -6,9 +6,13 @@ import { InstantsearchService } from '../../services/instantsearch.service';
 @Component({
   selector: 'app-hits',
   template: `
-    <p>
-      hits Works!
-    </p>
+    <div class="is-hits-root">
+      <ul>
+        <li *ngFor="let hit of state.hits">
+          {{ hit.name }}
+        </li>
+      </ul>
+    </div>
   `,
   styles: []
 })
