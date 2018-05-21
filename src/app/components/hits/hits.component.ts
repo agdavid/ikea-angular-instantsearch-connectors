@@ -28,7 +28,7 @@ export class HitsComponent implements OnInit {
     // something changes on the search state itself
     const widget = connectHits(this.updateState);
 
-    // Register the Hits widget into the instantSearchService search instance.
+    // Register the Hits widget into the instantsearchService search instance.
     this.instantsearchService.search.addWidget(widget());
   }
 
