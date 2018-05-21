@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { InstantsearchService } from './services/instantsearch.service';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -10,7 +11,9 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    InstantsearchService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
