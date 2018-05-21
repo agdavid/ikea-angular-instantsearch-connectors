@@ -22,7 +22,9 @@ export class RefinementListComponent implements OnInit {
     const widget = connectRefinementList(this.updateState);
 
     // Register the RefinementList widget into the instantsearchService search instance
-    this.instantsearchService.search.addWidget(widget());
+    this.instantsearchService.search.addWidget(widget({
+      attributeName: 'categories.lvl0'
+    }));
   }
 
   updateState = () => {
