@@ -9,7 +9,8 @@ import { InstantsearchService } from '../../services/instantsearch.service';
     <div class="is-hits-root">
       <ul>
         <li *ngFor="let hit of state.hits">
-          {{ hit.name }}
+          <p>{{ hit.name }} ( {{ hit.category }})</p>
+          <p> {{ hit.description }} </p>
         </li>
       </ul>
     </div>

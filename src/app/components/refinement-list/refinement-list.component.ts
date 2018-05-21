@@ -6,13 +6,28 @@ import { InstantsearchService } from '../../services/instantsearch.service';
 @Component({
   selector: 'app-refinement-list',
   template: `
-    <p>
-      refinement-list Works!
-    </p>
+    <div>
+      <label
+        *ngFor="let item of (state.items ? state.items : [])"
+        (click)="handleChange($event.target.value)"
+      >
+        <input
+          type="checkbox"
+          [value]="item.value"
+          [checked]="item.isRefined"
+        />
+        <span>{{ item.value }}</span>
+      </label>
+    </div>
   `,
   styles: []
 })
 export class RefinementListComponent implements OnInit {
+  // Define RefinementList initial state
+  state: { query: string; refine: Function } = {
+    query: '',
+    refine() {}
+  }
 
   constructor(private instantsearchService: InstantsearchService) { }
 
@@ -27,8 +42,19 @@ export class RefinementListComponent implements OnInit {
     }));
   }
 
-  updateState = () => {
-
+  handleChange = (query) => {
+    this.state.refine(query);
   }
 
+  updateState = (state, isFirstRendering) => {
+    // asynchronous update of the state
+    // avoid `ExpressionChangedAfterItHasBeenCheckedError`
+    if (isFirstRendering) {
+      return Promise.resolve(null).then(() => {
+        this.state = state;
+      });
+    }
+
+    this.state = state;
+  }
 }
