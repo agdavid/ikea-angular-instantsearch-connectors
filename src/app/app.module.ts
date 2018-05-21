@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { InstantsearchService } from './services/instantsearch.service';
 import { AppComponent } from './app.component';
+import { HitsComponent } from './components/hits/hits.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HitsComponent
   ],
   imports: [
     BrowserModule
